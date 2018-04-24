@@ -1,0 +1,1 @@
+SELECT COUNT(DISTINCT sensordb.`SENSOR_NAME`) as sensorcount FROM sensordb INNER JOIN sensordata on sensordb.`SENSORID` = sensordb.`SENSORID` WHERE sensordata.`DEVICEID` = 1001

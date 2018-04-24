@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp">
+
+    <TextView
+        android:id="@+id/listtxtSensor"
+        android:layout_width="20dp"
+        android:layout_height="54dp"
+        android:layout_weight="1"
+        android:text="Sensor Type"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+    <TextView
+        android:id="@+id/listtxtDateTime"
+        android:layout_width="20dp"
+        android:layout_height="53dp"
+        android:layout_weight="1"
+        android:text="Last Reading"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+    <TextView
+        android:id="@+id/listtxtValue"
+        android:layout_width="78dp"
+        android:layout_height="53dp"
+        android:layout_weight="1"
+        android:lineSpacingExtra="8sp"
+        android:text="34ppm"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        android:textSize="18sp" />
+
+</LinearLayout>

@@ -1,0 +1,8 @@
+INSERT INTO `RAQSP`.`OWNERS`
+(`NAME`,
+`C_MAIL`,
+`C_TEL`)
+VALUES
+("NAME",
+"EMAIL",
+"TEL");

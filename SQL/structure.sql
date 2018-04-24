@@ -1,0 +1,104 @@
+-- MySQL dump 10.13  Distrib 5.7.21, for macos10.13 (x86_64)
+--
+-- Host: localhost    Database: RAQSP
+-- ------------------------------------------------------
+-- Server version 5.7.21
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `DEVICES`
+--
+
+DROP TABLE IF EXISTS `DEVICES`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `DEVICES` (
+  `DEVICEID` varchar(25) NOT NULL,
+  `loc_LATI` decimal(10,0) NOT NULL,
+  `loc_LONG` decimal(10,0) NOT NULL,
+  `PUBLIC` binary(1) NOT NULL,
+  `OWNER_ID` int(11) NOT NULL,
+  `HW_ID` varchar(10) NOT NULL,
+  `SW_VER` decimal(10,0) NOT NULL,
+  `UPDATE` binary(1) NOT NULL,
+  PRIMARY KEY (`DEVICEID`),
+  UNIQUE KEY `DEVICEID_UNIQUE` (`DEVICEID`),
+  KEY `OWNER_ID_idx` (`OWNER_ID`),
+  CONSTRAINT `OWNER_ID` FOREIGN KEY (`OWNER_ID`) REFERENCES `OWNERS` (`OWNERID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `OWNERS`
+--
+
+DROP TABLE IF EXISTS `OWNERS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `OWNERS` (
+  `OWNERID` int(11) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(50) NOT NULL,
+  `C_MAIL` varchar(50) NOT NULL,
+  `C_TEL` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`OWNERID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `SENSORDATA`
+--
+
+DROP TABLE IF EXISTS `SENSORDATA`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `SENSORDATA` (
+  `DATETIME` datetime NOT NULL,
+  `DEVICEID` varchar(25) NOT NULL,
+  `SENSORID` varchar(10) NOT NULL,
+  `VALUE` varchar(20) NOT NULL,
+  PRIMARY KEY (`DATETIME`,`DEVICEID`,`SENSORID`),
+  KEY `DEVICEID_idx` (`DEVICEID`),
+  KEY `SENSORID_idx` (`SENSORID`),
+  CONSTRAINT `DEVICEID` FOREIGN KEY (`DEVICEID`) REFERENCES `DEVICES` (`DEVICEID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `SENSORID` FOREIGN KEY (`SENSORID`) REFERENCES `SENSORDB` (`SENSORID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `SENSORDB`
+--
+
+DROP TABLE IF EXISTS `SENSORDB`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `SENSORDB` (
+  `SENSORID` varchar(10) NOT NULL,
+  `SENSOR_NAME` varchar(25) NOT NULL,
+  `MANUFACTURER` varchar(25) NOT NULL,
+  `URL` varchar(50) NOT NULL,
+  `CALIBRATION_DATA` blob,
+  PRIMARY KEY (`SENSORID`),
+  UNIQUE KEY `SENSORID_UNIQUE` (`SENSORID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-04-04 23:17:26

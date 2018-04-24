@@ -1,0 +1,2 @@
+Mac Driver for Arduino compatible boards
+https://github.com/MPParsley/ch340g-ch34g-ch34x-mac-os-x-driver

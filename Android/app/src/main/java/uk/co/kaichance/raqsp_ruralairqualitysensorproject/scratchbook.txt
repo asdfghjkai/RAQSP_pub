@@ -1,0 +1,12 @@
+for (int i = 0; i < devices.length(); i++)
+                        {
+                            JSONObject tempObj = devices.getJSONObject(i);
+                            String devID = tempObj.getString("DEVICEID");
+                            String loc_LATI = tempObj.getString("loc_LATI");
+                            String loc_LONG = tempObj.getString("loc_LONG");
+                            HashMap<String, String> tempDev = new HashMap<>();
+                            tempDev.put("DEVICEID", devID);
+                            tempDev.put("loc_LATI", loc_LATI);
+                            tempDev.put("loc_LONG", loc_LONG);
+                            data.add(tempDev);
+                        }
